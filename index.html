@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gangga - Portofolio</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Styles -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <body class="bg-neutral-900 text-white font-['Poppins']">
+    <!-- Header & Navigation -->
+    <header
+      class="fixed top-0 w-full bg-neutral-900/90 backdrop-blur border-b border-amber-200/10 shadow-md z-[1000]"
+    >
+      <nav
+        class="max-w-[1200px] mx-auto px-5 py-4 grid grid-cols-3 items-center gap-4"
+      >
+        <!-- Logo / Brand -->
+        <div class="nav-brand justify-self-start col-span-2 md:col-span-1">
+          <h2
+            class="text-lg md:text-xl font-bold bg-gradient-to-r from-white via-amber-500 to-amber-600 bg-clip-text text-transparent"
+          >
+            ganggaSwara<\>
+          </h2>
+        </div>
+
+        <!-- Desktop Navigation -->
+        <ul
+          class="nav-menu hidden md:flex items-center gap-12 justify-end md:col-start-3 md:col-span-1 pr-4"
+        >
+          <li class="nav-item">
+            <a
+              href="#home"
+              class="nav-link font-normal relative text-gray-200 hover:text-amber-400 [&.active]:text-amber-400 [&.active]:after:w-full transition after:content-[''] after:absolute after:bottom-[-2px] after:left-0 after:h-[2.5px] after:w-0 after:bg-gradient-to-r after:from-amber-400 after:to-amber-500 hover:after:w-full after:transition-all after:duration-500"
+            >
+              Home
+            </a>
+          </li>
+          <li class="nav-item">
+            <a
+              href="#about"
+              class="nav-link font-normal relative text-gray-200 hover:text-amber-400 [&.active]:text-amber-400 [&.active]:after:w-full transition after:content-[''] after:absolute after:bottom-[-2px] after:left-0 after:h-[2.5px] after:w-0 after:bg-gradient-to-r after:from-amber-400 after:to-amber-500 hover:after:w-full after:transition-all after:duration-500"
+            >
+              About
+            </a>
+          </li>
+          <li class="nav-item">
+            <a
+              href="#skills"
+              class="nav-link font-normal relative text-gray-200 hover:text-amber-400 [&.active]:text-amber-400 [&.active]:after:w-full transition after:content-[''] after:absolute after:bottom-[-2px] after:left-0 after:h-[2.5px] after:w-0 after:bg-gradient-to-r after:from-amber-400 after:to-amber-500 hover:after:w-full after:transition-all after:duration-500"
+            >
+              Skills
+            </a>
+          </li>
+          <li class="nav-item">
+            <a
+              href="#contact"
+              class="nav-link font-normal relative text-gray-200 hover:text-amber-400 [&.active]:text-amber-400 [&.active]:after:w-full transition after:content-[''] after:absolute after:bottom-[-2px] after:left-0 after:h-[2.5px] after:w-0 after:bg-gradient-to-r after:from-amber-400 after:to-amber-500 hover:after:w-full after:transition-all after:duration-500"
+            >
+              Contact
+            </a>
+          </li>
+        </ul>
+        <!-- Mobile Menu Button -->
+        <div
+          class="hamburger md:hidden flex flex-col gap-1 cursor-pointer justify-self-end col-start-3"
+        >
+          <span class="bar w-6 h-0.5 bg-amber-400"></span>
+          <span class="bar w-6 h-0.5 bg-amber-400"></span>
+          <span class="bar w-6 h-0.5 bg-amber-400"></span>
+        </div>
+      </nav>
+
+      <!-- Mobile Navigation Menu -->
+      <div
+        class="mobile-menu md:hidden fixed -left-full opacity-0 pointer-events-none right-0 top-[64px] bg-neutral-900 border-t border-amber-200/10 shadow-xl transition-all duration-300"
+      >
+        <ul class="flex flex-col items-center gap-4 py-4">
+          <li>
+            <a
+              href="#home"
+              class="nav-link font-normal block py-2 text-gray-200 hover:text-amber-400 [&.active]:text-amber-400"
+            >
+              Home
+            </a>
+          </li>
+          <li>
+            <a
+              href="#about"
+              class="nav-link font-normal block py-2 text-gray-200 hover:text-amber-400 [&.active]:text-amber-400"
+            >
+              About
+            </a>
+          </li>
+          <li>
+            <a
+              href="#skills"
+              class="nav-link font-normal block py-2 text-gray-200 hover:text-amber-400 [&.active]:text-amber-400"
+            >
+              Skills
+            </a>
+          </li>
+          <li>
+            <a
+              href="#contact"
+              class="nav-link font-normal block py-2 text-gray-200 hover:text-amber-400 [&.active]:text-amber-400"
+            >
+              Contact
+            </a>
+          </li>
+        </ul>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section
+      id="home"
+      class="hero pt-32 pb-20 min-h-screen flex items-center relative"
+    >
+      <!-- Background Gradients -->
+      <div
+        class="absolute inset-0 -z-10 bg-gradient-to-br from-black/70 to-neutral-900/90"
+      ></div>
+      <div
+        class="absolute inset-0 -z-10 [background:radial-gradient(circle_at_20%_80%,rgba(251,191,36,0.1)_0%,transparent_50%),radial-gradient(circle_at_80%_20%,rgba(251,191,36,0.1)_0%,transparent_50%)]"
+      ></div>
+      <div
+        class="max-w-[1200px] mx-auto px-5 grid grid-cols-1 md:grid-cols-2 gap-x-1 gap-y-3 items-center w-full"
+      >
+        <div
+          class="space-y-4 animate-fade-in-up relative z-[1] md:justify-self-start md:mr-2 md:ml-20"
+        >
+          <h4
+            class="text-sm font-bold bg-gradient-to-r from-yellow-300 via-amber-500 to-amber-600 bg-clip-text text-transparent"
+          >
+            Hello World, I'm
+          </h4>
+          <p
+            class="text-4xl md:text-5xl font-bold opacity-0 translate-y-5 transition duration-700 ease-out"
+          >
+            Gangga Swara
+          </p>
+          <p
+            class="text-2xl font-semibold bg-gradient-to-r from-white via-amber-500 to-amber-600 bg-clip-text text-transparent flex items-center min-h-[1.5em]"
+          >
+            <span id="typewriter"></span>
+            <span
+              class="inline-block w-[2px] h-[1.2em] ml-0.5 rounded-sm shadow-[0_0_10px_rgba(251,191,36,0.9)] bg-gradient-to-b from-amber-400 via-amber-500 to-amber-700 motion-safe:animate-[blink_1.2s_infinite]"
+            ></span>
+          </p>
+          <p class="text-gray-300">
+            Welcome to my personal website.
+            <span id="wave-emoji" class="inline-block origin-[70%_70%]"
+              >👋</span
+            >
+          </p>
+        </div>
+        <div class="flex items-center justify-center">
+          <div
+            class="hero-image-wrap relative flex items-center justify-center w-72 h-72 md:w-[500px] md:h-[500px]"
+          >
+            <div
+              class="absolute z-0 pointer-events-none w-60 h-60 md:w-[320px] md:h-[320px] rounded-full bg-amber-300/20 blur-2xl"
+            ></div>
+            <div
+              class="absolute z-0 pointer-events-none w-72 h-72 md:w-[360px] md:h-[360px] rounded-full bg-amber-300/20 blur-3xl"
+            ></div>
+            <div
+              class="absolute z-0 pointer-events-none w-72 h-72 md:w-[360px] md:h-[360px] rounded-full bg-amber-400/5 blur-[56px] motion-safe:animate-[ping_5s_ease-in-out_infinite]"
+            ></div>
+            <div
+              class="float-wrapper relative z-10 motion-reduce:animate-none translate-y-0"
+            >
+              <img
+                src="Gangga.png"
+                alt="Gangga"
+                class="w-72 h-72 md:w-[430px] md:h-[430px] object-cover transition duration-1000 ease-[cubic-bezier(0.4,0,0.2,1)] hover:scale-[1.03] drop-shadow-[0_0_24px_rgba(251,191,36,0.12)] hover:drop-shadow-[0_0_28px_rgba(251,191,36,0.22)] rounded-full border-4 border-amber-300/30"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section
+      id="about"
+      class="min-h-screen flex items-center bg-gradient-to-b from-neutral-900 to-neutral-950"
+    >
+      <div class="max-w-[1200px] mx-auto px-5">
+        <!-- Section Title -->
+        <h2 class="text-4xl font-bold mb-16 relative inline-block">
+          About Me
+          <div
+            class="absolute -bottom-2 left-0 w-1/2 h-1 bg-gradient-to-r from-amber-400 to-amber-600"
+          ></div>
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <!-- Profile Image -->
+          <div class="relative">
+            <div
+              class="absolute -inset-4 bg-gradient-to-r from-amber-400/20 to-amber-600/20 rounded-lg blur-lg"
+            ></div>
+            <img
+              src="Gangga2.png"
+              alt="Profile"
+              class="relative w-full max-w-[400px] mx-auto rounded-lg border-2 border-amber-400/20"
+            />
+          </div>
+
+          <!-- About Content -->
+          <div class="space-y-6">
+            <h3 class="text-2xl font-semibold mb-4">
+              Hi everyone! I'm Gangga.
+            </h3>
+            <p class="text-gray-300 leading-relaxed">
+              I'm a Student at Universitas Pendidikan Ganesha, majoring in
+              Informatics. I have a strong passion for web development and
+              machine learning . I enjoy learning new things and always want to
+              improve my programming skills.
+            </p>
+            <p class="text-gray-300 leading-relaxed">
+              My hobby is GYM and Coding. My focus now is learn new thing on
+              creating functional website and user-friendly, and i want to learn
+              deeper on machine learning. I believe that programming is not just
+              a job, but an art form that combines functionality with aesthetic
+              value.
+            </p>
+
+            <!-- Info Cards -->
+            <div class="grid grid-cols-2 gap-4 mt-8">
+              <div
+                class="p-4 bg-black/40 rounded-lg border border-amber-400/20"
+              >
+                <h4 class="font-semibold text-amber-400 mb-1">Location</h4>
+                <p class="text-gray-300">Bali, Indonesia</p>
+              </div>
+              <div
+                class="p-4 bg-black/40 rounded-lg border border-amber-400/20"
+              >
+                <h4 class="font-semibold text-amber-400 mb-1">Study At</h4>
+                <p class="text-gray-300">Undiksha University</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section
+      id="skills"
+      class="min-h-screen flex items-center bg-gradient-to-b from-neutral-950 to-neutral-900"
+    >
+      <div class="max-w-[1200px] mx-auto px-5">
+        <!-- Section Title -->
+        <div class="mb-16">
+          <h2 class="text-4xl font-bold mb-2 relative inline-block">
+            Skills
+            <div
+              class="absolute -bottom-2 left-0 w-1/2 h-1 bg-gradient-to-r from-amber-400 to-amber-600"
+            ></div>
+          </h2>
+        </div>
+
+        <!-- Skills Categories -->
+        <div class="flex gap-8 mb-12 text-lg">
+          <button
+            class="text-amber-400 font-semibold border-b-2 border-amber-400"
+          >
+            Tech Stack
+          </button>
+        </div>
+
+        <!-- Skills Grid -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
+          <!-- HTML -->
+          <div
+            class="bg-neutral-900/50 p-6 rounded-lg border border-amber-400/20 hover:border-amber-400/40 transition-colors group"
+          >
+            <div class="flex items-center gap-4">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"
+                alt="HTML"
+                class="w-12 h-12"
+              />
+              <span
+                class="text-xl font-semibold text-gray-200 group-hover:text-amber-400 transition-colors"
+                >HTML</span
+              >
+            </div>
+          </div>
+
+          <!-- CSS -->
+          <div
+            class="bg-neutral-900/50 p-6 rounded-lg border border-amber-400/20 hover:border-amber-400/40 transition-colors group"
+          >
+            <div class="flex items-center gap-4">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"
+                alt="CSS"
+                class="w-12 h-12"
+              />
+              <span
+                class="text-xl font-semibold text-gray-200 group-hover:text-amber-400 transition-colors"
+                >CSS</span
+              >
+            </div>
+          </div>
+
+          <!--Tailwind-->
+          <div
+            class="bg-neutral-900/50 p-6 rounded-lg border border-amber-400/20 hover:border-amber-400/40 transition-colors group"
+          >
+            <div class="flex items-center gap-4">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 32 32"
+                class="w-12 h-12"
+              >
+                <path
+                  fill="#38bdf8"
+                  d="M9,13.7q1.4-5.6,7-5.6c5.6,0,6.3,4.2,9.1,4.9q2.8.7,4.9-2.1-1.4,5.6-7,5.6c-5.6,0-6.3-4.2-9.1-4.9Q11.1,10.9,9,13.7ZM2,22.1q1.4-5.6,7-5.6c5.6,0,6.3,4.2,9.1,4.9q2.8.7,4.9-2.1-1.4,5.6-7,5.6c-5.6,0-6.3-4.2-9.1-4.9Q4.1,19.3,2,22.1Z"
+                />
+              </svg>
+              <span
+                class="text-xl font-semibold text-gray-200 group-hover:text-amber-400 transition-colors"
+                >Tailwind</span
+              >
+            </div>
+          </div>
+
+          <!-- JavaScript -->
+          <div
+            class="bg-neutral-900/50 p-6 rounded-lg border border-amber-400/20 hover:border-amber-400/40 transition-colors group"
+          >
+            <div class="flex items-center gap-4">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+                alt="JavaScript"
+                class="w-12 h-12"
+              />
+              <span
+                class="text-xl font-semibold text-gray-200 group-hover:text-amber-400 transition-colors"
+                >JavaScript</span
+              >
+            </div>
+          </div>
+
+          <!-- Python -->
+          <div
+            class="bg-neutral-900/50 p-6 rounded-lg border border-amber-400/20 hover:border-amber-400/40 transition-colors group"
+          >
+            <div class="flex items-center gap-4">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
+                alt="Python"
+                class="w-12 h-12"
+              />
+              <span
+                class="text-xl font-semibold text-gray-200 group-hover:text-amber-400 transition-colors"
+                >Python</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section
+      id="contact"
+      class="min-h-screen flex items-center justify-center bg-gradient-to-b from-neutral-900 to-neutral-950 pt-32"
+    >
+      <div class="max-w-[800px] mx-auto px-5 w-full -mt-20">
+        <h2
+          class="text-center text-4xl font-bold mb-16 relative inline-block w-full"
+        >
+          Contact Me
+          <div
+            class="absolute -bottom-2 left-1/4 w-1/2 h-1 bg-gradient-to-r from-amber-400 to-amber-600"
+          ></div>
+        </h2>
+        <div class="max-w-[500px] mx-auto">
+          <div class="mb-8 space-y-4">
+            <div
+              class="flex items-center justify-center gap-4 p-6 bg-black/60 rounded-lg hover:bg-black/70 transition-colors border border-amber-400/20 hover:border-amber-400/40"
+            >
+              <i class="fas fa-envelope text-amber-400 text-xl"></i>
+              <span class="text-lg">ganggaswara11@gmail.com</span>
+            </div>
+          </div>
+          <div class="flex justify-center gap-6 mt-12">
+            <a
+              href="#"
+              class="w-14 h-14 rounded-full bg-black/60 text-amber-400 hover:bg-black/70 hover:text-amber-300 flex items-center justify-center text-xl transition-colors border border-amber-400/20 hover:border-amber-400/40"
+              ><i class="fab fa-github"></i
+            ></a>
+            <a
+              href="#"
+              class="w-14 h-14 rounded-full bg-black/60 text-amber-400 hover:bg-black/70 hover:text-amber-300 flex items-center justify-center text-xl transition-colors border border-amber-400/20 hover:border-amber-400/40"
+              ><i class="fab fa-linkedin"></i
+            ></a>
+            <a
+              href="#"
+              class="w-14 h-14 rounded-full bg-black/60 text-amber-400 hover:bg-black/70 hover:text-amber-300 flex items-center justify-center text-xl transition-colors border border-amber-400/20 hover:border-amber-400/40"
+              ><i class="fab fa-instagram"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Footer -->
+    <footer class="bg-neutral-800/50 text-white text-center py-4 text-sm">
+      <div class="max-w-[400px] mx-auto px-5">
+        <p class="mb-1 text-gray-300">
+          &copy; 2025 Gangga. All rights reserved.
+        </p>
+        <p class="text-gray-400">Made with ❤️ and ☕ by Gangga</p>
+      </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+  </body>
+</html>
