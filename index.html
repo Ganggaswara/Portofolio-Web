@@ -15,6 +15,59 @@
 
     <!-- Styles -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            animation: {
+              "fade-in": "fadeIn 1s ease-in forwards",
+              "scale-in": "scaleIn 0.8s ease-out forwards",
+              "fade-in-up": "fadeInUp 0.8s ease-out forwards",
+              "fade-in-down": "fadeInDown 0.8s ease-out forwards",
+              "slide-in": "slideIn 0.5s ease-out forwards",
+            },
+            keyframes: {
+              fadeIn: {
+                "0%": { opacity: "0" },
+                "100%": { opacity: "1" },
+              },
+              scaleIn: {
+                "0%": { transform: "scale(0.95)" },
+                "100%": { transform: "scale(1)" },
+              },
+              fadeInUp: {
+                "0%": {
+                  opacity: "0",
+                  transform: "translateY(1rem)",
+                },
+                "100%": {
+                  opacity: "1",
+                  transform: "translateY(0)",
+                },
+              },
+              fadeInDown: {
+                "0%": {
+                  opacity: "0",
+                  transform: "translateY(-1rem)",
+                },
+                "100%": {
+                  opacity: "1",
+                  transform: "translateY(0)",
+                },
+              },
+              slideIn: {
+                "0%": {
+                  transform: "translateY(-100%)",
+                },
+                "100%": {
+                  transform: "translateY(0)",
+                },
+              },
+            },
+          },
+        },
+      };
+    </script>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -23,13 +76,15 @@
   <body class="bg-neutral-900 text-white font-['Poppins']">
     <!-- Header & Navigation -->
     <header
-      class="fixed top-0 w-full bg-neutral-900/90 backdrop-blur border-b border-amber-200/10 shadow-md z-[1000]"
+      class="fixed top-0 w-full bg-neutral-900/90 backdrop-blur border-b border-amber-200/10 shadow-md z-[1000] opacity-0 animate-fade-in-down [animation-delay:100ms] [animation-fill-mode:forwards]"
     >
       <nav
         class="max-w-[1200px] mx-auto px-5 py-4 grid grid-cols-3 items-center gap-4"
       >
         <!-- Logo / Brand -->
-        <div class="nav-brand justify-self-start col-span-2 md:col-span-1">
+        <div
+          class="nav-brand justify-self-start col-span-2 md:col-span-1 opacity-0 animate-fade-in [animation-delay:300ms] [animation-fill-mode:forwards]"
+        >
           <h2
             class="text-lg md:text-xl font-bold bg-gradient-to-r from-white via-amber-500 to-amber-600 bg-clip-text text-transparent"
           >
@@ -39,7 +94,7 @@
 
         <!-- Desktop Navigation -->
         <ul
-          class="nav-menu hidden md:flex items-center gap-12 justify-end md:col-start-3 md:col-span-1 pr-4"
+          class="nav-menu hidden md:flex items-center gap-12 justify-end md:col-start-3 md:col-span-1 pr-4 opacity-0 animate-fade-in [animation-delay:500ms] [animation-fill-mode:forwards]"
         >
           <li class="nav-item">
             <a
@@ -67,6 +122,14 @@
           </li>
           <li class="nav-item">
             <a
+              href="#projects"
+              class="nav-link font-normal relative text-gray-200 hover:text-amber-400 [&.active]:text-amber-400 [&.active]:after:w-full transition after:content-[''] after:absolute after:bottom-[-2px] after:left-0 after:h-[2.5px] after:w-0 after:bg-gradient-to-r after:from-amber-400 after:to-amber-500 hover:after:w-full after:transition-all after:duration-500"
+            >
+              Projects
+            </a>
+          </li>
+          <li class="nav-item">
+            <a
               href="#contact"
               class="nav-link font-normal relative text-gray-200 hover:text-amber-400 [&.active]:text-amber-400 [&.active]:after:w-full transition after:content-[''] after:absolute after:bottom-[-2px] after:left-0 after:h-[2.5px] after:w-0 after:bg-gradient-to-r after:from-amber-400 after:to-amber-500 hover:after:w-full after:transition-all after:duration-500"
             >
@@ -76,7 +139,7 @@
         </ul>
         <!-- Mobile Menu Button -->
         <div
-          class="hamburger md:hidden flex flex-col gap-1 cursor-pointer justify-self-end col-start-3"
+          class="hamburger md:hidden flex flex-col gap-1 cursor-pointer justify-self-end col-start-3 opacity-0 animate-fade-in [animation-delay:700ms] [animation-fill-mode:forwards]"
         >
           <span class="bar w-6 h-0.5 bg-amber-400"></span>
           <span class="bar w-6 h-0.5 bg-amber-400"></span>
@@ -148,11 +211,7 @@
           >
             Hello World, I'm
           </h4>
-          <p
-            class="text-4xl md:text-5xl font-bold opacity-0 translate-y-5 transition duration-700 ease-out"
-          >
-            Gangga Swara
-          </p>
+          <p class="text-4xl md:text-5xl font-bold">Gangga Swara</p>
           <p
             class="text-2xl font-semibold bg-gradient-to-r from-white via-amber-500 to-amber-600 bg-clip-text text-transparent flex items-center min-h-[1.5em]"
           >
@@ -161,7 +220,9 @@
               class="inline-block w-[2px] h-[1.2em] ml-0.5 rounded-sm shadow-[0_0_10px_rgba(251,191,36,0.9)] bg-gradient-to-b from-amber-400 via-amber-500 to-amber-700 motion-safe:animate-[blink_1.2s_infinite]"
             ></span>
           </p>
-          <p class="text-gray-300">
+          <p
+            class="text-gray-300 opacity-0 translate-y-4 animate-fade-in-up [animation-delay:1000ms] [animation-fill-mode:forwards]"
+          >
             Welcome to my personal website.
             <span id="wave-emoji" class="inline-block origin-[70%_70%]"
               >👋</span
@@ -182,12 +243,12 @@
               class="absolute z-0 pointer-events-none w-72 h-72 md:w-[360px] md:h-[360px] rounded-full bg-amber-400/5 blur-[56px] motion-safe:animate-[ping_5s_ease-in-out_infinite]"
             ></div>
             <div
-              class="float-wrapper relative z-10 motion-reduce:animate-none translate-y-0"
+              class="float-wrapper relative z-10 motion-reduce:animate-none translate-y-0 opacity-0 animate-fade-in [animation-delay:600ms] [animation-fill-mode:forwards]"
             >
               <img
                 src="Gangga.png"
                 alt="Gangga"
-                class="w-72 h-72 md:w-[430px] md:h-[430px] object-cover transition duration-1000 ease-[cubic-bezier(0.4,0,0.2,1)] hover:scale-[1.03] drop-shadow-[0_0_24px_rgba(251,191,36,0.12)] hover:drop-shadow-[0_0_28px_rgba(251,191,36,0.22)] rounded-full border-4 border-amber-300/30"
+                class="w-72 h-72 md:w-[430px] md:h-[430px] object-cover transition duration-1000 ease-[cubic-bezier(0.4,0,0.2,1)] hover:scale-[1.03] drop-shadow-[0_0_24px_rgba(251,191,36,0.12)] hover:drop-shadow-[0_0_28px_rgba(251,191,36,0.22)] rounded-full border-4 border-amber-300/30 scale-95 animate-scale-in [animation-delay:900ms] [animation-fill-mode:forwards]"
               />
             </div>
           </div>
@@ -218,7 +279,7 @@
             <img
               src="Gangga2.png"
               alt="Profile"
-              class="relative w-full max-w-[400px] mx-auto rounded-lg border-2 border-amber-400/20"
+              class="relative w-full max-w-[400px] mx-auto rounded-lg border-2 border-amber-400/20 transition-transform transform hover:scale-105 hover:shadow-2xl opacity-0 animate-fade-in-up [animation-delay:600ms] [animation-fill-mode:forwards]"
             />
           </div>
 
@@ -380,7 +441,29 @@
         </div>
       </div>
     </section>
-
+    <!-- Project Section -->
+    <section
+  id="projects"
+  class="min-h-screen flex items-center bg-gradient-to-b from-neutral-900 to-neutral-950"
+>
+  <div class="max-w-[1200px] mx-auto px-5">
+    <!-- Section Title -->
+    <h2 class="text-4xl font-bold mb-16 relative inline-block">
+      My Projects
+      <div
+        class="absolute -bottom-2 left-0 w-1/2 h-1 bg-gradient-to-r from-amber-400 to-amber-600"
+      ></div>
+    </h2>
+    <div class="text-center text-lg text-gray-300">
+      <p
+        id="coming-soon"
+        class="text-3xl font-semibold animate-pulse bg-gradient-to-r from-pink-500 via-yellow-500 to-teal-500 text-transparent bg-clip-text"
+      >
+        Coming Soon...
+      </p>
+    </div>
+  </div>
+</section>
     <!-- Contact Section -->
     <section
       id="contact"
@@ -406,17 +489,23 @@
           </div>
           <div class="flex justify-center gap-6 mt-12">
             <a
-              href="#"
+              href="https://www.github.com/Ganggaswara"
+              target="_blank"
+              rel="noopener noreferrer"
               class="w-14 h-14 rounded-full bg-black/60 text-amber-400 hover:bg-black/70 hover:text-amber-300 flex items-center justify-center text-xl transition-colors border border-amber-400/20 hover:border-amber-400/40"
               ><i class="fab fa-github"></i
             ></a>
             <a
-              href="#"
+              href="https://www.linkedin.com/in/ganggaswara11"
+              target="_blank"
+              rel="noopener noreferrer"
               class="w-14 h-14 rounded-full bg-black/60 text-amber-400 hover:bg-black/70 hover:text-amber-300 flex items-center justify-center text-xl transition-colors border border-amber-400/20 hover:border-amber-400/40"
               ><i class="fab fa-linkedin"></i
             ></a>
             <a
-              href="#"
+              href="https://www.instagram.com/ganggaswaraa/"
+              target="_blank"
+              rel="noopener noreferrer"
               class="w-14 h-14 rounded-full bg-black/60 text-amber-400 hover:bg-black/70 hover:text-amber-300 flex items-center justify-center text-xl transition-colors border border-amber-400/20 hover:border-amber-400/40"
               ><i class="fab fa-instagram"></i
             ></a>
