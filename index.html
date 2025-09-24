@@ -13,6 +13,15 @@
       rel="stylesheet"
     />
 
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
     <!-- Styles -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -68,10 +77,105 @@
         },
       };
     </script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-    />
+    <style>
+      /* Prevent horizontal overflow on mobile */
+      html,
+      body {
+        overflow-x: hidden;
+        max-width: 100%;
+      }
+
+      /* Ensure all images are responsive */
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+
+      /* Fix for mobile navigation */
+      .hamburger {
+        position: relative !important;
+        right: auto !important;
+        top: auto !important;
+        transform: none !important;
+      }
+
+      /* Hamburger Menu Animation */
+      .hamburger {
+        cursor: pointer;
+        z-index: 1001;
+        position: relative;
+      }
+
+      .hamburger .bar {
+        transition: all 0.3s ease;
+      }
+
+      .hamburger.active .bar:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px);
+      }
+
+      .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+      }
+
+      .hamburger.active .bar:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px);
+      }
+
+      /* Mobile Header Layout */
+      @media (max-width: 768px) {
+        .nav-brand {
+          flex: 1;
+        }
+
+        .nav-menu {
+          display: none; /* Hide desktop menu on mobile */
+        }
+
+        .hamburger {
+          flex-shrink: 0;
+          margin-left: auto;
+        }
+      }
+
+      /* Desktop Header Layout - Improved layout */
+      @media (min-width: 769px) {
+        .nav-brand {
+          flex: 0 0 auto;
+          margin-right: auto;
+          margin-left: 8rem;
+          min-width: 150px;
+        }
+
+        .nav-menu {
+          flex: 1;
+          justify-content: flex-end;
+          margin-right: 8rem;
+          max-width: 600px;
+          display: flex;
+          align-items: center;
+        }
+
+        .hamburger {
+          display: none; /* Hide hamburger on desktop */
+        }
+
+        /* Ensure proper spacing between menu items */
+        .nav-menu li {
+          margin-left: 5px;
+        }
+
+        .nav-menu li:first-child {
+          margin-left: 0;
+        }
+
+        /* Skills section desktop positioning */
+        #skills {
+          transform: translateX(-2rem);
+          margin-left: -50px;
+        }
+      }
+    </style>
   </head>
   <body class="bg-neutral-900 text-white font-['Poppins']">
     <!-- Header & Navigation -->
@@ -79,11 +183,11 @@
       class="fixed top-0 w-full bg-neutral-900/90 backdrop-blur border-b border-amber-200/10 shadow-md z-[1000] opacity-0 animate-fade-in-down [animation-delay:100ms] [animation-fill-mode:forwards]"
     >
       <nav
-        class="max-w-[1200px] mx-auto px-5 py-4 grid grid-cols-3 items-center gap-4"
+        class="w-full mx-auto px-4 sm:px-5 py-4 flex items-center justify-between"
       >
         <!-- Logo / Brand -->
         <div
-          class="nav-brand justify-self-start col-span-2 md:col-span-1 opacity-0 animate-fade-in [animation-delay:300ms] [animation-fill-mode:forwards]"
+          class="nav-brand opacity-0 animate-fade-in [animation-delay:300ms] [animation-fill-mode:forwards]"
         >
           <h2
             class="text-lg md:text-xl font-bold bg-gradient-to-r from-white via-amber-500 to-amber-600 bg-clip-text text-transparent"
@@ -94,7 +198,7 @@
 
         <!-- Desktop Navigation -->
         <ul
-          class="nav-menu hidden md:flex items-center gap-12 justify-end md:col-start-3 md:col-span-1 pr-4 opacity-0 animate-fade-in [animation-delay:500ms] [animation-fill-mode:forwards]"
+          class="nav-menu hidden md:flex items-center gap-8 opacity-0 animate-fade-in [animation-delay:500ms] [animation-fill-mode:forwards]"
         >
           <li class="nav-item">
             <a
@@ -139,7 +243,7 @@
         </ul>
         <!-- Hamburger Menu Button -->
         <div
-          class="hamburger md:hidden flex flex-col gap-1 cursor-pointer justify-self-end fixed right-5 top-1/2 transform -translate-y-1/2 z-[9999] pointer-events-auto"
+          class="hamburger md:hidden flex flex-col gap-1 cursor-pointer opacity-0 animate-fade-in [animation-delay:500ms] [animation-fill-mode:forwards] relative"
         >
           <span class="bar w-6 h-0.5 bg-amber-400"></span>
           <span class="bar w-6 h-0.5 bg-amber-400"></span>
@@ -191,7 +295,7 @@
     <!-- Hero Section -->
     <section
       id="home"
-      class="hero pt-32 pb-20 min-h-screen flex items-center relative"
+      class="hero pt-4 min-h-screen flex items-center relative"
     >
       <!-- Background Gradients -->
       <div
@@ -243,7 +347,7 @@
               class="absolute z-0 pointer-events-none w-72 h-72 md:w-[360px] md:h-[360px] rounded-full bg-amber-400/5 blur-[56px] motion-safe:animate-[ping_5s_ease-in-out_infinite]"
             ></div>
             <div
-              class="float-wrapper relative z-10 motion-reduce:animate-none translate-y-0 opacity-0 animate-fade-in [animation-delay:600ms] [animation-fill-mode:forwards]"
+              class="float-wrapper pt-16 relative z-10 motion-reduce:animate-none translate-y-0 opacity-0 animate-fade-in [animation-delay:600ms] [animation-fill-mode:forwards]"
             >
               <img
                 src="Gangga.png"
@@ -259,7 +363,7 @@
     <!-- About Section -->
     <section
       id="about"
-      class="min-h-screen flex items-center bg-gradient-to-b from-neutral-900 to-neutral-950"
+      class="min-h-screen mt-[80px] flex items-center bg-gradient-to-b from-neutral-900 to-neutral-950"
     >
       <div class="max-w-[1200px] mx-auto px-5">
         <!-- Section Title -->
@@ -348,16 +452,16 @@
         </div>
 
         <!-- Skills Grid -->
-        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
           <!-- HTML -->
           <div
             class="bg-neutral-900/50 p-6 rounded-lg border border-amber-400/20 hover:border-amber-400/40 transition-colors group"
           >
-            <div class="flex items-center gap-4">
+            <div class="flex items-center gap-4 pt-2">
               <img
                 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"
                 alt="HTML"
-                class="w-12 h-12"
+                class="w-8 h-8"
               />
               <span
                 class="text-xl font-semibold text-gray-200 group-hover:text-amber-400 transition-colors"
@@ -370,11 +474,11 @@
           <div
             class="bg-neutral-900/50 p-6 rounded-lg border border-amber-400/20 hover:border-amber-400/40 transition-colors group"
           >
-            <div class="flex items-center gap-4">
+            <div class="flex items-center gap-4 pt-2">
               <img
                 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"
                 alt="CSS"
-                class="w-12 h-12"
+                class="w-8 h-8"
               />
               <span
                 class="text-xl font-semibold text-gray-200 group-hover:text-amber-400 transition-colors"
@@ -387,19 +491,14 @@
           <div
             class="bg-neutral-900/50 p-6 rounded-lg border border-amber-400/20 hover:border-amber-400/40 transition-colors group"
           >
-            <div class="flex items-center gap-4">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 32 32"
-                class="w-12 h-12"
-              >
-                <path
-                  fill="#38bdf8"
-                  d="M9,13.7q1.4-5.6,7-5.6c5.6,0,6.3,4.2,9.1,4.9q2.8.7,4.9-2.1-1.4,5.6-7,5.6c-5.6,0-6.3-4.2-9.1-4.9Q11.1,10.9,9,13.7ZM2,22.1q1.4-5.6,7-5.6c5.6,0,6.3,4.2,9.1,4.9q2.8.7,4.9-2.1-1.4,5.6-7,5.6c-5.6,0-6.3-4.2-9.1-4.9Q4.1,19.3,2,22.1Z"
-                />
-              </svg>
+            <div class="flex items-center gap-4 pt-2">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg"
+                alt="Tailwind"
+                class="w-6 h-6"
+              />
               <span
-                class="text-xl font-semibold text-gray-200 group-hover:text-amber-400 transition-colors"
+                class="text-lg font-semibold text-gray-200 group-hover:text-amber-400 transition-colors"
                 >Tailwind</span
               >
             </div>
@@ -413,11 +512,11 @@
               <img
                 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
                 alt="JavaScript"
-                class="w-12 h-12"
+                class="w-10 h-10"
               />
               <span
                 class="text-xl font-semibold text-gray-200 group-hover:text-amber-400 transition-colors"
-                >JavaScript</span
+                >JS</span
               >
             </div>
           </div>
@@ -426,15 +525,32 @@
           <div
             class="bg-neutral-900/50 p-6 rounded-lg border border-amber-400/20 hover:border-amber-400/40 transition-colors group"
           >
-            <div class="flex items-center gap-4">
+            <div class="flex items-center gap-4 pt-2">
               <img
                 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
                 alt="Python"
-                class="w-12 h-12"
+                class="w-8 h-8"
               />
               <span
-                class="text-xl font-semibold text-gray-200 group-hover:text-amber-400 transition-colors"
+                class="text-lg font-semibold text-gray-200 group-hover:text-amber-400 transition-colors"
                 >Python</span
+              >
+            </div>
+          </div>
+
+          <!-- React -->
+          <div
+            class="bg-neutral-900/50 p-6 rounded-lg border border-amber-400/20 hover:border-amber-400/40 transition-colors group"
+          >
+            <div class="flex items-center gap-4 pt-2">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
+                alt="React"
+                class="w-8 h-8"
+              />
+              <span
+                class="text-lg font-semibold text-gray-200 group-hover:text-amber-400 transition-colors"
+                >React</span
               >
             </div>
           </div>
@@ -444,7 +560,7 @@
     <!-- Project Section -->
     <section
       id="projects"
-      class="min-h-screen flex items-center bg-gradient-to-b from-neutral-900 to-neutral-950"
+      class="min-h-screen mt-[25px] flex items-center bg-gradient-to-b from-neutral-900 to-neutral-950"
     >
       <div class="max-w-[1200px] mx-auto px-5">
         <!-- Section Title -->
@@ -459,6 +575,54 @@
         <div
           class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto"
         >
+          <!-- Portfolio Website Project -->
+          <div
+            class="bg-[#0A0A0F] rounded-lg overflow-hidden border border-amber-400/20 hover:border-amber-400/40 transition-all group"
+          >
+            <div class="relative overflow-hidden p-3">
+              <img
+                src="project3.svg"
+                alt="Portfolio Website"
+                class="rounded-lg w-full h-40 object-cover transition duration-500 group-hover:scale-105"
+              />
+            </div>
+            <div class="p-4 space-y-2">
+              <h3 class="text-lg font-semibold text-white">
+                Portfolio Website
+              </h3>
+              <p class="text-gray-300 text-xs leading-relaxed">
+                A modern, responsive portfolio website showcasing personal
+                projects, skills, and achievements. Built with HTML, CSS,
+                JavaScript, and Tailwind CSS featuring smooth animations and
+                professional design.
+              </p>
+              <div class="flex gap-3 pt-2">
+                <a
+                  href="#"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-1.5 text-xs text-white bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/20 hover:border-amber-400/40 rounded-md px-3 py-1.5 transition-all"
+                >
+                  <span>Live Demo</span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-3 h-3"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
           <!-- Aritmatika Solver Project -->
           <div
             class="bg-[#0A0A0F] rounded-lg overflow-hidden border border-amber-400/20 hover:border-amber-400/40 transition-all group"
@@ -508,17 +672,19 @@
           <div
             class="bg-[#0A0A0F] rounded-lg overflow-hidden border border-amber-400/20 hover:border-amber-400/40 transition-all group"
           >
-          <div class="relative overflow-hidden p-3">
-            <img
-              src="project2.svg"
-              alt="Aritmatika Solver"
-              class="rounded-lg w-full h-40 object-cover transition duration-500 group-hover:scale-105"
-            />
-          </div>
+            <div class="relative overflow-hidden p-3">
+              <img
+                src="project2.svg"
+                alt="Aritmatika Solver"
+                class="rounded-lg w-full h-40 object-cover transition duration-500 group-hover:scale-105"
+              />
+            </div>
             <div class="p-4 space-y-2">
               <h3 class="text-lg font-semibold text-white">PaceMaker®</h3>
               <p class="text-gray-300 text-xs leading-relaxed">
-                An e-commerce website for shoes featuring product catalog, shopping cart, user authentication, and payment integration. Built with React framework.
+                An e-commerce website for shoes featuring product catalog,
+                shopping cart, user authentication, and payment integration.
+                Built with React framework.
               </p>
               <div class="flex gap-3 pt-2">
                 <a
