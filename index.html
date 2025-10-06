@@ -64,12 +64,28 @@
                   transform: "translateY(0)",
                 },
               },
-              slideIn: {
+              slideInRight: {
                 "0%": {
-                  transform: "translateY(-100%)",
+                  opacity: "0",
+                  transform: "translateX(100px) scale(0.9)",
                 },
                 "100%": {
-                  transform: "translateY(0)",
+                  opacity: "1",
+                  transform: "translateX(0) scale(1)",
+                },
+              },
+              breathe: {
+                "0%, 100%": {
+                  transform: "scale(1)",
+                  opacity: "0.5",
+                },
+                "25%": {
+                  transform: "scale(1.05)",
+                  opacity: "0.7",
+                },
+                "75%": {
+                  transform: "scale(1.02)",
+                  opacity: "0.6",
                 },
               },
             },
@@ -78,6 +94,30 @@
       };
     </script>
     <style>
+      /* Enhanced smooth scroll behavior */
+      html {
+        scroll-behavior: smooth;
+      }
+
+      /* Custom smooth scroll enhancement for better performance */
+      @media (prefers-reduced-motion: no-preference) {
+        html {
+          scroll-behavior: smooth;
+        }
+
+        /* Enhanced scroll momentum for webkit browsers */
+        * {
+          scroll-behavior: smooth;
+        }
+      }
+
+      /* Fallback for older browsers */
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+      }
+
       /* Prevent horizontal overflow on mobile */
       html,
       body {
@@ -120,6 +160,47 @@
 
       .hamburger.active .bar:nth-child(3) {
         transform: rotate(45deg) translate(-5px, -6px);
+      }
+
+      /* Reveal on Scroll Animations - Extended Duration */
+      .reveal-element {
+        opacity: 0;
+        transform: translateY(25px) scale(0.98);
+        transition: opacity 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+
+      .reveal-element.revealed {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+
+      .reveal-child {
+        opacity: 0;
+        transform: translateY(15px) scale(0.99);
+        transition: opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+
+      .reveal-child.revealed {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+
+      /* Section animation states - Extended Duration */
+      section h2 {
+        opacity: 0;
+        transform: translateY(15px) scale(0.95);
+        transition: opacity 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+
+      section p, .info-card, .skill-card, .project-card {
+        opacity: 0;
+        transform: translateY(20px) scale(0.98);
+        transition: opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+
+      /* Skill bars extended animation */
+      .skill-progress {
+        transition: width 2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       }
 
       /* Mobile Header Layout */
@@ -282,6 +363,14 @@
           </li>
           <li>
             <a
+              href="#projects"
+              class="nav-link font-normal block py-2 text-gray-200 hover:text-amber-400 [&.active]:text-amber-400"
+            >
+              Projects
+            </a>
+          </li>
+          <li>
+            <a
               href="#contact"
               class="nav-link font-normal block py-2 text-gray-200 hover:text-amber-400 [&.active]:text-amber-400"
             >
@@ -295,7 +384,7 @@
     <!-- Hero Section -->
     <section
       id="home"
-      class="hero pt-4 min-h-screen flex items-center relative"
+      class="hero pt-4 min-h-screen flex items-center relative reveal-on-scroll"
     >
       <!-- Background Gradients -->
       <div
@@ -308,7 +397,7 @@
         class="max-w-[1200px] mx-auto px-5 grid grid-cols-1 md:grid-cols-2 gap-x-1 gap-y-3 items-center w-full"
       >
         <div
-          class="space-y-4 animate-fade-in-up relative z-[1] md:justify-self-start md:mr-2 md:ml-20"
+          class="space-y-2 md:space-y-4 animate-fade-in-up relative z-[1] md:justify-self-start md:mr-2 md:ml-20"
         >
           <h4
             class="text-sm font-bold bg-gradient-to-r from-yellow-300 via-amber-500 to-amber-600 bg-clip-text text-transparent"
@@ -352,7 +441,7 @@
               <img
                 src="Gangga.png"
                 alt="Gangga"
-                class="w-72 h-72 md:w-[430px] md:h-[430px] object-cover transition duration-1000 ease-[cubic-bezier(0.4,0,0.2,1)] hover:scale-[1.03] drop-shadow-[0_0_24px_rgba(251,191,36,0.12)] hover:drop-shadow-[0_0_28px_rgba(251,191,36,0.22)] rounded-full border-4 border-amber-300/30 scale-95 animate-scale-in [animation-delay:900ms] [animation-fill-mode:forwards]"
+                class="w-72 h-72 md:w-[430px] md:h-[430px] object-cover transition duration-1000 ease-[cubic-bezier(0.4,0,0.2,1)] hover:scale-[1.03] drop-shadow-[0_0_24px_rgba(251,191,36,0.12)] hover:drop-shadow-[0_0_28px_rgba(251,191,36,0.22)] rounded-full border-4 border-amber-300/30 scale-95 animate-slide-in-right [animation-delay:900ms] [animation-fill-mode:forwards]"
               />
             </div>
           </div>
@@ -363,7 +452,7 @@
     <!-- About Section -->
     <section
       id="about"
-      class="min-h-screen mt-[80px] flex items-center bg-gradient-to-b from-neutral-900 to-neutral-950"
+      class="min-h-screen mt-[80px] flex items-center bg-gradient-to-b from-neutral-900 to-neutral-950 reveal-on-scroll"
     >
       <div class="max-w-[1200px] mx-auto px-5">
         <!-- Section Title -->
@@ -376,14 +465,14 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <!-- Profile Image -->
-          <div class="relative">
+          <div class="relative w-72 h-72 md:w-96 md:h-96 mx-auto">
             <div
-              class="absolute -inset-4 bg-gradient-to-r from-amber-400/20 to-amber-600/20 rounded-lg blur-lg"
+              class="absolute -inset-8 bg-gradient-to-r from-amber-400/20 to-amber-600/20 rounded-full blur-lg motion-safe:animate-[breathe_4s_ease-in-out_infinite] [animation-delay:1.5s]"
             ></div>
             <img
               src="Gangga2.png"
               alt="Profile"
-              class="relative w-full max-w-[400px] mx-auto rounded-lg border-2 border-amber-400/20 transition-transform transform hover:scale-105 hover:shadow-2xl opacity-0 animate-fade-in-up [animation-delay:600ms] [animation-fill-mode:forwards]"
+              class="relative w-full h-full object-cover rounded-full border-2 border-amber-400/20 transition-transform transform hover:scale-105 hover:shadow-2xl opacity-0 animate-fade-in-up [animation-delay:600ms] [animation-fill-mode:forwards]"
             />
           </div>
 
@@ -429,7 +518,7 @@
     <!-- Skills Section -->
     <section
       id="skills"
-      class="min-h-screen flex items-center bg-gradient-to-b from-neutral-950 to-neutral-900"
+      class="min-h-screen flex items-center bg-gradient-to-b from-neutral-950 to-neutral-900 reveal-on-scroll"
     >
       <div class="max-w-[1200px] mx-auto px-5">
         <!-- Section Title -->
@@ -455,7 +544,7 @@
         <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
           <!-- HTML -->
           <div
-            class="bg-neutral-900/50 p-6 rounded-lg border border-amber-400/20 hover:border-amber-400/40 transition-colors group"
+            class="bg-neutral-900/50 p-6 rounded-lg border border-amber-400/20 hover:border-amber-400/40 transition-colors group skill-card"
           >
             <div class="flex items-center gap-4 pt-2">
               <img
@@ -472,7 +561,7 @@
 
           <!-- CSS -->
           <div
-            class="bg-neutral-900/50 p-6 rounded-lg border border-amber-400/20 hover:border-amber-400/40 transition-colors group"
+            class="bg-neutral-900/50 p-6 rounded-lg border border-amber-400/20 hover:border-amber-400/40 transition-colors group skill-card"
           >
             <div class="flex items-center gap-4 pt-2">
               <img
@@ -489,7 +578,7 @@
 
           <!--Tailwind-->
           <div
-            class="bg-neutral-900/50 p-6 rounded-lg border border-amber-400/20 hover:border-amber-400/40 transition-colors group"
+            class="bg-neutral-900/50 p-6 rounded-lg border border-amber-400/20 hover:border-amber-400/40 transition-colors group skill-card"
           >
             <div class="flex items-center gap-4 pt-2">
               <img
@@ -506,7 +595,7 @@
 
           <!-- JavaScript -->
           <div
-            class="bg-neutral-900/50 p-6 rounded-lg border border-amber-400/20 hover:border-amber-400/40 transition-colors group"
+            class="bg-neutral-900/50 p-6 rounded-lg border border-amber-400/20 hover:border-amber-400/40 transition-colors group skill-card"
           >
             <div class="flex items-center gap-4">
               <img
@@ -523,7 +612,7 @@
 
           <!-- Python -->
           <div
-            class="bg-neutral-900/50 p-6 rounded-lg border border-amber-400/20 hover:border-amber-400/40 transition-colors group"
+            class="bg-neutral-900/50 p-6 rounded-lg border border-amber-400/20 hover:border-amber-400/40 transition-colors group skill-card"
           >
             <div class="flex items-center gap-4 pt-2">
               <img
@@ -540,7 +629,7 @@
 
           <!-- React -->
           <div
-            class="bg-neutral-900/50 p-6 rounded-lg border border-amber-400/20 hover:border-amber-400/40 transition-colors group"
+            class="bg-neutral-900/50 p-6 rounded-lg border border-amber-400/20 hover:border-amber-400/40 transition-colors group skill-card"
           >
             <div class="flex items-center gap-4 pt-2">
               <img
@@ -560,7 +649,7 @@
     <!-- Project Section -->
     <section
       id="projects"
-      class="min-h-screen mt-[25px] flex items-center bg-gradient-to-b from-neutral-900 to-neutral-950"
+      class="min-h-screen mt-[25px] flex items-center bg-gradient-to-b from-neutral-900 to-neutral-950 reveal-on-scroll"
     >
       <div class="max-w-[1200px] mx-auto px-5">
         <!-- Section Title -->
@@ -577,7 +666,7 @@
         >
           <!-- Portfolio Website Project -->
           <div
-            class="bg-[#0A0A0F] rounded-lg overflow-hidden border border-amber-400/20 hover:border-amber-400/40 transition-all group"
+            class="bg-[#0A0A0F] rounded-lg overflow-hidden border border-amber-400/20 hover:border-amber-400/40 transition-all group project-card"
           >
             <div class="relative overflow-hidden p-3">
               <img
@@ -625,7 +714,7 @@
 
           <!-- Aritmatika Solver Project -->
           <div
-            class="bg-[#0A0A0F] rounded-lg overflow-hidden border border-amber-400/20 hover:border-amber-400/40 transition-all group"
+            class="bg-[#0A0A0F] rounded-lg overflow-hidden border border-amber-400/20 hover:border-amber-400/40 transition-all group project-card"
           >
             <div class="relative overflow-hidden p-3">
               <img
@@ -670,7 +759,7 @@
 
           <!-- Online Shoes Store Project -->
           <div
-            class="bg-[#0A0A0F] rounded-lg overflow-hidden border border-amber-400/20 hover:border-amber-400/40 transition-all group"
+            class="bg-[#0A0A0F] rounded-lg overflow-hidden border border-amber-400/20 hover:border-amber-400/40 transition-all group project-card"
           >
             <div class="relative overflow-hidden p-3">
               <img
@@ -718,7 +807,7 @@
     <!-- Contact Section -->
     <section
       id="contact"
-      class="min-h-screen flex items-center justify-center bg-gradient-to-b from-neutral-900 to-neutral-950 pt-32"
+      class="min-h-screen flex items-center justify-center bg-gradient-to-b from-neutral-900 to-neutral-950 pt-32 reveal-on-scroll"
     >
       <div class="max-w-[800px] mx-auto px-5 w-full -mt-20">
         <h2

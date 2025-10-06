@@ -23,16 +23,40 @@ document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', 
     mobileMenu.classList.remove('left-0', 'opacity-100');
 }));
 
-// Smooth scrolling for navigation links
+// Enhanced smooth scrolling for navigation links with better easing
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
+            // Enhanced smooth scroll with better easing and duration
             target.scrollIntoView({
                 behavior: 'smooth',
-                block: 'start'
+                block: 'start',
+                inline: 'nearest'
             });
+
+            // Additional custom scroll enhancement for ultra-smooth experience
+            const targetPosition = target.offsetTop;
+            const startPosition = window.pageYOffset;
+            const distance = targetPosition - startPosition;
+            const duration = Math.min(Math.abs(distance) / 2, 1200); // Adaptive duration, max 1.2s
+
+            let start = null;
+            function scrollAnimation(timestamp) {
+                if (!start) start = timestamp;
+                const progress = Math.min((timestamp - start) / duration, 1);
+
+                // Custom easing function for ultra-smooth scroll
+                const ease = 1 - Math.pow(1 - progress, 3); // easeOutCubic
+                window.scrollTo(0, startPosition + (distance * ease));
+
+                if (progress < 1) {
+                    requestAnimationFrame(scrollAnimation);
+                }
+            }
+
+            requestAnimationFrame(scrollAnimation);
         }
     });
 });
@@ -62,31 +86,140 @@ window.addEventListener('scroll', () => {
     });
 });
 
-// Animate skill bars on scroll
-const observerOptions = {
-    threshold: 0.5
-};
+// Bidirectional Reveal on scroll animation for all sections
+const revealElements = document.querySelectorAll('.reveal-on-scroll');
 
-const observer = new IntersectionObserver((entries) => {
+const revealOnScroll = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            const skillBars = entry.target.querySelectorAll('.skill-progress');
-            skillBars.forEach(bar => {
-                const width = bar.style.width;
-                bar.style.width = '0%';
+            entry.target.classList.add('revealed');
+            // Stagger animation for child elements if they exist
+            const children = entry.target.querySelectorAll('.reveal-child');
+            children.forEach((child, index) => {
                 setTimeout(() => {
-                    bar.style.width = width;
-                }, 200);
+                    child.classList.add('revealed');
+                }, index * 200); // Slower stagger for more elegant feel
             });
+        } else {
+            // Re-trigger animation when scrolling back up
+            setTimeout(() => {
+                entry.target.classList.remove('revealed');
+                const children = entry.target.querySelectorAll('.reveal-child');
+                children.forEach(child => {
+                    child.classList.remove('revealed');
+                });
+            }, 150); // Slightly longer delay for smoother resets
         }
     });
-}, observerOptions);
+}, {
+    threshold: 0.05,
+    rootMargin: '0px 0px -30px 0px'
+});
 
-// Observe skills section
-const skillsSection = document.querySelector('.skills');
-if (skillsSection) {
-    observer.observe(skillsSection);
-}
+revealElements.forEach(element => {
+    element.classList.add('reveal-element');
+    revealOnScroll.observe(element);
+});
+
+// Enhanced bidirectional section animations with extended timing
+const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const section = entry.target;
+
+            // Animate section title with extended duration
+            const title = section.querySelector('h2');
+            if (title) {
+                title.style.opacity = '1';
+                title.style.transform = 'translateY(0)';
+                title.style.transition = 'opacity 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+            }
+
+            // Animate content with extended stagger effect
+            const contentElements = section.querySelectorAll('p, .info-card, .skill-card, .project-card');
+            contentElements.forEach((element, index) => {
+                setTimeout(() => {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                    element.style.transition = `opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) ${index * 0.08}s, transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) ${index * 0.08}s`;
+                }, index * 150); // Much slower stagger for elegant flow
+            });
+
+            // Special handling for skills section with extended animation
+            if (section.id === 'skills') {
+                const skillBars = section.querySelectorAll('.skill-progress');
+                skillBars.forEach((bar, index) => {
+                    setTimeout(() => {
+                        const width = bar.style.width || bar.dataset.width || '80%';
+                        bar.style.width = '0%';
+                        bar.style.transition = 'width 2s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                        setTimeout(() => {
+                            bar.style.width = width;
+                        }, 200);
+                    }, index * 300); // Much slower skill bar animation
+                });
+            }
+
+            // Special handling for projects section with extended timing
+            if (section.id === 'projects') {
+                const projectCards = section.querySelectorAll('.project-card');
+                projectCards.forEach((card, index) => {
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                        card.style.transition = `opacity 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) ${index * 0.12}s, transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) ${index * 0.12}s`;
+                    }, index * 250); // Extended project card stagger
+                });
+            }
+        } else {
+            // Reset animations when scrolling back up with extended timing
+            setTimeout(() => {
+                const section = entry.target;
+
+                // Reset section title
+                const title = section.querySelector('h2');
+                if (title) {
+                    title.style.opacity = '0';
+                    title.style.transform = 'translateY(15px)';
+                    title.style.transition = 'opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                }
+
+                // Reset content elements
+                const contentElements = section.querySelectorAll('p, .info-card, .skill-card, .project-card');
+                contentElements.forEach(element => {
+                    element.style.opacity = '0';
+                    element.style.transform = 'translateY(20px)';
+                    element.style.transition = 'opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                });
+
+                // Reset skill bars
+                if (section.id === 'skills') {
+                    const skillBars = section.querySelectorAll('.skill-progress');
+                    skillBars.forEach(bar => {
+                        bar.style.width = '0%';
+                    });
+                }
+
+                // Reset project cards
+                if (section.id === 'projects') {
+                    const projectCards = section.querySelectorAll('.project-card');
+                    projectCards.forEach(card => {
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(20px)';
+                    });
+                }
+            }, 150);
+        }
+    });
+}, {
+    threshold: 0.08,
+    rootMargin: '0px 0px -80px 0px'
+});
+
+// Observe all main sections
+document.querySelectorAll('section').forEach(section => {
+    sectionObserver.observe(section);
+});
 
 // Add fade-in animation for project cards
 const projectCards = document.querySelectorAll('.project-card');
